@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffcccb;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            background-color: #ffe4e1;
+            border: 2px solid #ff6666;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+            width: 300px;
+        }
+        h1 {
+            color: #ff3333;
+        }
+        .heart {
+            font-size: 100px;
+            color: #ff6666;
+        }
+        .button {
+            background-color: #ff6666;
+            color: white;
+            padding: 15px 25px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #cc5050;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("2i8ry1DNg-2t2gTzw"); // Replace with your EmailJS public key
+        })();
+
+        function showYesMessage() {
+            emailjs.send("service_k3hcz04", "template_ar9ax0u", {
+                to_name: "Girlfriend",
+                to_email: "matthewchenkiarie@gmail.com",
+                message: "Yes! I will be your valentine!"
+            })
+            .then(function(response) {
+                alert("Email successfully sent!");
+            }, function(error) {
+                alert("Failed to send email: " + JSON.stringify(error));
+            });
+        }
+
+        function moveButton() {
+            var noButton = document.getElementById('noButton');
+            var container = noButton.parentElement;
+            var containerRect = container.getBoundingClientRect();
+            var newX = Math.random() * (containerRect.width - noButton.offsetWidth);
+            var newY = Math.random() * (containerRect.height - noButton.offsetHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = newX + 'px';
+            noButton.style.top = newY + 'px';
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="heart">❤️</div>
+        <h1>Will You Be My Valentine?</h1>
+        <p>I can't imagine celebrating Valentine's Day without you. Will you be my valentine?</p>
+        <button class="button" onclick="showYesMessage()">Yes</button>
+        <button class="button" id="noButton" onclick="moveButton()">No</button>
+    </div>
+</body>
+</html>
